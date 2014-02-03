@@ -8,7 +8,7 @@
         "path": "C:\\Program Files (x86)\\cvsnt;"
     },
     "osx": {
-        "path": "/Applications/Xcode.app/Contents/Developer/usr/bin"
+        "path": "/usr/bin"
     },
     "variants": [
         {
