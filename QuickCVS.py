@@ -67,10 +67,16 @@ class QuickCvsBranchStatusCommand(sublime_plugin.TextCommand):
         s = sublime.load_settings("QuickCVS.sublime-settings")
         if s.get("cvs_statusbar"):
             full_file_name = self.view.file_name()
+
+            if not full_file_name:
+                # e.g. a view which wasn't saved yet
+                return
+
             file_name = os.path.basename(full_file_name)
             file_path = os.path.dirname(full_file_name)
 
             if not os.path.exists(os.path.join(file_path, 'CVS')):
+                # non-CVS folder
                 return
 
             p = subprocess.Popen(['cvs status ' + file_name], cwd=file_path, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
