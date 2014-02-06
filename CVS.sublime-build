@@ -8,7 +8,7 @@
         "path": "C:\\Program Files (x86)\\cvsnt;"
     },
     "osx": {
-        "path": "/usr/bin"
+        "path": "/usr/bin:/bin"
     },
     "variants": [
         {
@@ -82,6 +82,52 @@
                 "--log",
                 "$file_name"
             ]
+        },
+        {
+            "name": "update_to_branch",
+            "cmd": [
+                "cvs",
+                "update",
+                "-r",
+                "",
+                "$file_name"
+            ],
+            "working_dir": "$file_path",
+            "target": "quick_cvs_update_with_version_build_target"
+        },
+        {
+            "name": "get_clean_copy_of_branch",
+            "cmd": [
+                "cvs",
+                "update",
+                "-r",
+                "",
+                "-C",
+                "$file_name"
+            ],
+            "working_dir": "$file_path",
+            "target": "quick_cvs_update_with_version_build_target"
+        },
+        {
+            "name": "visual_diff_to_rev",
+            "cmd": [
+                "zsh",
+                "$packages/QuickCVS/DiffToRev.sh",
+                "HEAD",
+                "$file",
+                "/tmp/_quick_cvs_sublime"
+            ],
+            "target": "quick_cvs_visual_diff_build_target"
+        },
+        {
+            "name": "visual_diff",
+            "cmd": [
+                "zsh",
+                "$packages/QuickCVS/Diff.sh",
+                "$file",
+                "/tmp/_quick_cvs_sublime"
+            ],
+            "target": "quick_cvs_visual_diff"
         }
     ]
 }

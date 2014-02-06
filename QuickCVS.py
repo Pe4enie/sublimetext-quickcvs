@@ -21,6 +21,7 @@ class RunBuildCvsCommand(sublime_plugin.WindowCommand):
         })
         self.window.run_command("set_build_system", {"file":""}) # Set build_system to *automatic*
 
+
 class QuickCvsCommitBuildTargetCommand(sublime_plugin.WindowCommand):
     def run(self, cmd = [], file_regex = "", line_regex = "", working_dir = "", encoding = "utf-8", env = {}, path = "", shell = False):
         self.execDict = {
@@ -39,16 +40,59 @@ class QuickCvsCommitBuildTargetCommand(sublime_plugin.WindowCommand):
         self.window.run_command('exec', self.execDict)
 
 
+class QuickCvsVisualDiffCommand(sublime_plugin.WindowCommand):
+    def run(self, cmd=[], file_regex='', line_regex='', working_dir='', encoding='utf-8', env={}, path='', shell=False):
+        self.execDict = {
+            'path': path,
+            'shell': shell,
+            'cmd': cmd,
+            'file_regex': file_regex,
+            'line_regex': line_regex,
+            'working_dir': working_dir,
+            'encoding': encoding,
+            'env': env
+        }
+        self.window.run_command('exec', self.execDict)
 
 
-def cvs_root(directory):
-    retval = False
+class QuickCvsVisualDiffBuildTargetCommand(sublime_plugin.WindowCommand):
+    def run(self, cmd=[], file_regex='', line_regex='', working_dir='', encoding='utf-8', env={}, path='', shell=False):
+        self.execDict = {
+            'path': path,
+            'shell': shell,
+            'cmd': cmd,
+            'file_regex': file_regex,
+            'line_regex': line_regex,
+            'working_dir': working_dir,
+            'encoding': encoding,
+            'env': env
+        }
+        self.window.show_input_panel('Branch', 'B_patch_6_16_', self.on_done, None, None)
 
-    if os.path.exists(os.path.join(directory, 'CVS')):
-        retval = directory
+    def on_done(self, branch):
+        self.execDict['cmd'][2] = branch
+        self.window.run_command('exec', self.execDict)
 
-    return retval
 
+class QuickCvsUpdateWithVersionBuildTargetCommand(sublime_plugin.WindowCommand):
+    def run(self, cmd=[], file_regex='', line_regex='', working_dir='', encoding='utf-8', env={}, path='', shell=False):
+        self.execDict = {
+            'path': path,
+            'shell': shell,
+            'cmd': cmd,
+            'file_regex': file_regex,
+            'line_regex': line_regex,
+            'working_dir': working_dir,
+            'encoding': encoding,
+            'env': env
+        }
+        self.window.show_input_panel('Revision', '', self.on_done, None, None)
+
+    def on_done(self, rev):
+        self.execDict['cmd'][3] = rev
+        self.window.run_command('exec', self.execDict)
+        time.sleep(0.05)
+        self.window.active_view().run_command("quick_cvs_branch_status")
 
 
 class QuickCvsBranchStatusListener(sublime_plugin.EventListener):

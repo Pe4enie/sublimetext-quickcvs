@@ -8,41 +8,90 @@
                     {
                         "caption": "Status",
                         "command": "run_build_cvs",
-                        "args" : {
-                            "build_system" : "Packages/QuickCVS/CVS.sublime-build",
-                            "build_variant" :"status"
+                        "args": {
+                            "build_system": "Packages/QuickCVS/CVS.sublime-build",
+                            "build_variant": "status"
                         }
+                    },
+                    {
+                        "caption": "Log",
+                        "command": "run_build_cvs",
+                        "args": {
+                            "build_system": "Packages/QuickCVS/CVS.sublime-build",
+                            "build_variant": "log"
+                        }
+                    },
+                    {
+                        "caption": "-"
                     },
                     {
                         "caption": "Diff",
                         "command": "run_build_cvs",
-                        "args" : {
-                            "build_system" : "Packages/QuickCVS/CVS.sublime-build",
-                            "build_variant" :"diff"
+                        "args": {
+                            "build_system": "Packages/QuickCVS/CVS.sublime-build",
+                            "build_variant": "diff"
                         }
+                    },
+                    {
+                        "caption": "Visual diff",
+                        "command": "run_build_cvs",
+                        "args": {
+                            "build_system": "Packages/QuickCVS/CVS.sublime-build",
+                            "build_variant": "visual_diff"
+                        }
+                    },
+                    {
+                        "caption": "Visual diff with rev",
+                        "command": "run_build_cvs",
+                        "args": {
+                            "build_system": "Packages/QuickCVS/CVS.sublime-build",
+                            "build_variant": "visual_diff_to_rev"
+                        }
+                    },
+                    {
+                        "caption": "-"
                     },
                     {
                         "caption": "Update",
                         "command": "run_build_cvs",
-                        "args" : {
-                            "build_system" : "Packages/QuickCVS/CVS.sublime-build",
-                            "build_variant" :"update"
+                        "args": {
+                            "build_system": "Packages/QuickCVS/CVS.sublime-build",
+                            "build_variant": "update"
+                        }
+                    },
+                    {
+                        "caption": "Update to rev",
+                        "command": "run_build_cvs",
+                        "args": {
+                            "build_system": "Packages/QuickCVS/CVS.sublime-build",
+                            "build_variant": "update_to_branch"
                         }
                     },
                     {
                         "caption": "Get clean copy",
                         "command": "run_build_cvs",
-                        "args" : {
-                            "build_system" : "Packages/QuickCVS/CVS.sublime-build",
-                            "build_variant" :"get_clean_copy"
+                        "args": {
+                            "build_system": "Packages/QuickCVS/CVS.sublime-build",
+                            "build_variant": "get_clean_copy"
                         }
+                        },
+                    {
+                        "caption": "Get clean copy of rev",
+                        "command": "run_build_cvs",
+                        "args": {
+                            "build_system": "Packages/QuickCVS/CVS.sublime-build",
+                            "build_variant": "get_clean_copy_of_branch"
+                        }
+                    },
+                    {
+                        "caption": "-"
                     },
                     {
                         "caption": "Commit current file",
                         "command": "run_build_cvs",
-                        "args" : {
-                            "build_system" : "Packages/QuickCVS/CVS.sublime-build",
-                            "build_variant" :"commit"
+                        "args": {
+                            "build_system": "Packages/QuickCVS/CVS.sublime-build",
+                            "build_variant": "commit"
                         }
                     }
                 ]
