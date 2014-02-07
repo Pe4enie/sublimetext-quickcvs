@@ -111,7 +111,7 @@
         {
             "name": "visual_diff_to_rev",
             "cmd": [
-                "zsh",
+                "sh",
                 "$packages/QuickCVS/DiffToRev.sh",
                 "HEAD",
                 "$file",
@@ -122,7 +122,7 @@
         {
             "name": "visual_diff",
             "cmd": [
-                "zsh",
+                "sh",
                 "$packages/QuickCVS/Diff.sh",
                 "$file",
                 "/tmp/_quick_cvs_sublime"
