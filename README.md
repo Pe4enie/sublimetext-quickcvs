@@ -1,9 +1,7 @@
 QuickCVS
 =================
 
-[Sublime Text 2](http://www.sublimetext.com/2) CVS plugin that helps... a little bit!...
-
-Runs **cvs** on your console and prints output to Sublime Text 2 console.
+[Sublime Text 2](http://www.sublimetext.com/2) / [3](http://www.sublimetext.com/3) lightweight CVS plugin
 
 ---
 
@@ -26,7 +24,9 @@ Features
 * Update
 * Get Clean Copy
 * Commit
-* Open folder in cervisia (linux only)
+* Open folder in cervisia (Linux only)
+* Visual diff (Unix & ST3 only)
+* Current status and branch displayed in the status bar
 
 Usage
 -------------
@@ -40,11 +40,8 @@ Usage
 
 When using `Diff` you can jump through differences using `F4` / `Shift+F4` .
 
-Development (TODO)
+Development
 -----------
-* Fix `QuickCVS: log` encoding problems. See `"build_variant" :"log"` in [CVS.sublime-build](https://github.com/ePages-rnd/sublimetext-quickcvs/blob/master/CVS.sublime-build).
 * Implement `cvs annotate` to render output into file buffer.
-* Show CVS status in the editor status bar.
 * Open the current cartridge in a graphical CVS tool.
-* Open folder in CVS-GUI for windows platform.
-* Show a graphical diff. Once you figure out how to render shell output into filebuffer, this is easy, when combind with the [FileDiffs](https://github.com/colinta/SublimeFileDiffs) plugin.
+* Open folder in WinCVS resp. SmartCVS
