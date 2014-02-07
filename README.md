@@ -25,7 +25,7 @@ Features
 * Get Clean Copy
 * Commit
 * Open folder in cervisia (Linux only)
-* Visual diff (Unix only)
+* Visual diff (Unix & ST3 only)
 * Current status and branch displayed in the status bar
 
 Usage
