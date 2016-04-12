@@ -92,15 +92,15 @@ class QuickCvsCommandThread(threading.Thread):
                 if self.working_dir != "":
                     os.chdir(self.working_dir)
 
-                proc = subprocess.Popen(self.command,
-                    stdout=self.stdout, stderr=subprocess.STDOUT,
-                    stdin=subprocess.PIPE,
-                    shell=shell, universal_newlines=True)
-                output = proc.communicate(self.stdin)[0]
-                if not output:
-                    output = ''
+                # proc = subprocess.Popen(self.command,
+                #     stdout=self.stdout, stderr=subprocess.STDOUT,
+                #     stdin=subprocess.PIPE,
+                #     shell=shell, universal_newlines=True)
+                # output = proc.communicate(self.stdin)[0]
+                # if not output:
+                #     output = ''
                 # if sublime's python gets bumped to 2.7 we can just do:
-                # output = subprocess.check_output(self.command)
+                output = subprocess.check_output(self.command)
                 main_thread(self.on_done, output, **self.kwargs)
 
         except subprocess.CalledProcessError as e:
