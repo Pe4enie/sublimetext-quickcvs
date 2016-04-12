@@ -38,6 +38,23 @@ class QuickCvsCommitBuildTargetCommand(sublime_plugin.WindowCommand):
         self.execDict["cmd"][3] = message
         self.window.run_command('exec', self.execDict)
 
+class QuickCvsTagCommand(sublime_plugin.WindowCommand):
+    def run(self, cmd = [], file_regex = "", line_regex = "", working_dir = "", encoding = "utf-8", env = {}, path = "", shell = False):
+        self.execDict = {
+            "path" : path,
+            "shell" : shell,
+            "cmd" : cmd,
+            "file_regex" : file_regex,
+            "line_regex" : line_regex,
+            "working_dir" : working_dir,
+            "encoding" : encoding,
+            "env" : env
+        }
+        print(self.execDict)
+        #self.window.show_input_panel("Enter tag", "", self.on_done, None, None)
+    def on_done(self, message):
+        self.execDict["cmd"][3] = message
+        self.window.run_command('exec', self.execDict)
 
 # generic threading stuff, shamelessly stolen from git plugin
 
@@ -45,18 +62,6 @@ def main_thread(callback, *args, **kwargs):
     # sublime.set_timeout gets used to send things onto the main thread
     # most sublime.[something] calls need to be on the main thread
     sublime.set_timeout(functools.partial(callback, *args, **kwargs), 0)
-
-def _make_text_safeish(text, fallback_encoding, method='decode'):
-    # The unicode decode here is because sublime converts to unicode inside
-    # insert in such a way that unknown characters will cause errors, which is
-    # distinctly non-ideal... and there's no way to tell what's coming out of
-    # git in output. So...
-    try:
-        unitext = getattr(text, method)('utf-8')
-    except (UnicodeEncodeError, UnicodeDecodeError):
-        unitext = getattr(text, method)(fallback_encoding)
-    return unitext
-
 
 class QuickCvsCommandThread(threading.Thread):
     def __init__(self, command, on_done, working_dir="", fallback_encoding="", **kwargs):
@@ -96,12 +101,11 @@ class QuickCvsCommandThread(threading.Thread):
                     output = ''
                 # if sublime's python gets bumped to 2.7 we can just do:
                 # output = subprocess.check_output(self.command)
-                main_thread(self.on_done,
-                    _make_text_safeish(output, self.fallback_encoding), **self.kwargs)
+                main_thread(self.on_done, output, **self.kwargs)
 
-        except subprocess.CalledProcessError, e:
+        except subprocess.CalledProcessError as e:
             main_thread(self.on_done, e.returncode)
-        except OSError, e:
+        except OSError as e:
             raise e
 
 
@@ -145,6 +149,7 @@ class QuickCvsTextCommand(QuickCvsCommand, sublime_plugin.TextCommand):
         # First, is this actually a file on the file system?
         if self.view.file_name() and len(self.view.file_name()) > 0:
             return True
+        return False
 
     def get_file_name(self):
         return os.path.basename(self.view.file_name())
@@ -215,4 +220,3 @@ class QuickCvsBranchStatusCommand(QuickCvsTextCommand):
 
         self.view.set_status("cvs-branch", "CVS branch: " + branch)
         self.view.set_status("cvs-status", "status: " + status)
-
