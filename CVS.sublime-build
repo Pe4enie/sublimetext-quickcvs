@@ -31,6 +31,17 @@
             "target": "quick_cvs_commit_build_target"
         },
         {
+            "name": "tag as version",
+            "cmd": [
+                "cvs",
+                "tag",
+                "-m",
+                "$project_base_name",
+                "$file_name"
+            ],
+            "target": "quick_cvs_tag"
+        },
+        {
             "name": "get_clean_copy",
             "cmd": [
                 "cvs",
