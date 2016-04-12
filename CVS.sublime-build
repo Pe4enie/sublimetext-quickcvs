@@ -31,7 +31,7 @@
             "target": "quick_cvs_commit_build_target"
         },
         {
-            "name": "tag as version",
+            "name": "tag",
             "cmd": [
                 "cvs",
                 "tag",
