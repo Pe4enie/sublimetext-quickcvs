@@ -16,6 +16,14 @@
         }
     },
     {
+        "caption": "Quick CVS: tag current file as version",
+        "command": "run_build_cvs",
+        "args" : {
+            "build_system" : "Packages/QuickCVS/CVS.sublime-build",
+            "build_variant" :"tag"
+        }
+    },
+    {
         "caption": "Quick CVS: update",
         "command": "run_build_cvs",
         "args" : {
